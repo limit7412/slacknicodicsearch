@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  sinatra:
+    environment:
+      - SLACK_ID=UCJGTRDEG
+      - WEBHOOK_URL_IZUMI="test"
+      - SLACK_TOKEN="test"
+    build: .
+    volumes:
+      - ./:/app/
+    ports:
+      - "4567:80"
