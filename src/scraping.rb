@@ -4,6 +4,7 @@ require 'uri'
 
 class Scraping
   def initialize(query)
+    @query = query
     search_dic(query)
   end
 
@@ -18,7 +19,12 @@ class Scraping
 
     doc = Nokogiri::HTML.parse(dic_res[:html], nil, dic_res[:charset])
 
-    return doc.title
+    return {
+      pretext: "#{@query}について知りたいんだね！調べてきたよプロデューサー！",
+      title: @query,
+      title_link: url,
+      text: doc.xpath('//h2[@class="h2-2"]')
+    }
   end
 
   private
