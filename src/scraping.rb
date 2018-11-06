@@ -21,17 +21,10 @@ class Scraping
 
     return {
       pretext: "「#{@query}」について知りたいんだね！調べてきたよプロデューサー！",
-      fields: [
-        {
-          title: @query,
-          title_link: url,
-          text: "#{doc.xpath('//div[@class="article"]').css("p").inner_text[0..1000]}…",
-          color: "#FACC2E"
-        }
-        # {
-        #   text: "```#{doc.xpath('//div[@class="article"]').css("blockquote").inner_text}```"
-        # }
-      ]
+      title: @query,
+      title_link: url,
+      text: "#{doc.xpath('//div[@class="article"]').css("p").inner_text[0..1000]}…",
+      color: "#FACC2E"
     }
   end
 

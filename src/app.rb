@@ -20,7 +20,7 @@ end
 
 def api_post(app_res,url,params)
   post_res = Faraday.post url, params.to_json
-  return post_res.body
+  return app_res
 end
 
 get '/' do
