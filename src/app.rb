@@ -15,7 +15,7 @@ def error_post(error)
     color: "#EB4646",
     footer: "github_notifications_slack",
   }
-  api_post('あれれっ？',ENV['WEBHOOK_URL_IZUMI'],attachments:[post])
+  api_post('あれっ？',ENV['WEBHOOK_URL_IZUMI'],attachments:[post])
 end
 
 def api_post(app_res,url,params)
@@ -34,7 +34,7 @@ post '/' do
     else
       scraping = Scraping.new(params[:text])
       scraping.get_top
-      api_post('どうかな？わかったかな？',ENV['WEBHOOK_URL_MIO'],scraping.get_dic)
+      api_post('',ENV['WEBHOOK_URL_MIO'],scraping.get_dic)
     end
   rescue => error
     error_post error
