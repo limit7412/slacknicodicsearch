@@ -15,10 +15,10 @@ def error_post(error)
     color: "#EB4646",
     footer: "github_notifications_slack",
   }
-  api_post(ENV['WEBHOOK_URL_IZUMI'],attachments:[post],"あれれっ?")
+  api_post('あれれっ？',ENV['WEBHOOK_URL_IZUMI'],attachments:[post])
 end
 
-def api_post(url,params,app_res)
+def api_post(app_res,url,params)
   post_res = Faraday.post url, params.to_json
   return app_res
 end
@@ -34,7 +34,7 @@ post '/' do
     else
       scraping = Scraping.new(params[:text])
       scraping.get_top
-      api_post(ENV['WEBHOOK_URL_MIO'],scraping.get_dic,"どうかな？わかったかな？")
+      return api_post('どうかな？わかったかな？',ENV['WEBHOOK_URL_MIO'],scraping.get_dic)
     end
   rescue => error
     error_post error
