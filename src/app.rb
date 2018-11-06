@@ -21,7 +21,7 @@ end
 def api_post(app_res,url,params)
   post_res = Faraday.post url, params.to_json
   return {
-    res: post_res,
+    res: post_res.body,
     params: params
   }.to_json
   # return app_res
