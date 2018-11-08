@@ -20,10 +20,10 @@ class Scraping
     doc = Nokogiri::HTML.parse(dic_res[:html], nil, dic_res[:charset])
 
     return {
-      fallback: "「#{@query}」について知りたいんだね！調べてきたよプロデューサー！",
+      pretext: "「#{@query}」について知りたいんだね！調べてきたよプロデューサー！",
       title: @query,
       title_link: url,
-      text: "#{doc.xpath('//div[@class="article"]').css("p").inner_text[0..1000]}…",
+      text: "#{doc.xpath('//div[@class="article"]').css("p").inner_text}",
       color: "#FACC2E"
     }
   end
