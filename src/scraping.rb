@@ -1,6 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'uri'
+require './api.rb'
 
 class Scraping
   def initialize(query)
@@ -19,13 +20,17 @@ class Scraping
 
     doc = Nokogiri::HTML.parse(dic_res[:html], nil, dic_res[:charset])
 
-    return {
+    @post = {
       pretext: "「#{@query}」について調べてきたよプロデューサー！",
       title: @query,
       title_link: url,
       text: "#{doc.xpath('//div[@class="article"]').css("p").inner_text}",
       color: "#FACC2E"
     }
+  end
+
+  def post_dic(url)
+    res = api_post(url,attachments:[@post])
   end
 
   private
