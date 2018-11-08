@@ -1,7 +1,7 @@
 require 'nokogiri'
 require 'open-uri'
 require 'uri'
-require './api.rb'
+require './src/api.rb'
 
 class Scraping
   def initialize(query)

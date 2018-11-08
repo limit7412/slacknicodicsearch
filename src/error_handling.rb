@@ -1,4 +1,4 @@
-require './api.rb'
+require './src/api.rb'
 
 # エラーハンドリング用
 def error_post(error)
@@ -11,6 +11,6 @@ def error_post(error)
     color: "#EB4646",
     footer: "github_notifications_slack",
   }
-  api_post(,ENV['WEBHOOK_URL_IZUMI'],attachments:[post])
+  api_post(ENV['WEBHOOK_URL_IZUMI'],attachments:[post])
   return 'あれっ？'
 end
