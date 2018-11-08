@@ -20,11 +20,7 @@ end
 
 def api_post(app_res,url,params)
   post_res = Faraday.post url, params.to_json
-  return {
-    res: post_res.body,
-    params: params
-  }.to_json
-  # return app_res
+  return app_res
 end
 
 get '/' do
@@ -38,7 +34,7 @@ post '/' do
     else
       scraping = Scraping.new(params[:text])
       scraping.get_top
-      api_post('',ENV['WEBHOOK_URL_MIO'],scraping.get_dic)
+      api_post('',ENV['WEBHOOK_URL_MIO'],attachments:[scraping.get_dic])
     end
   rescue => error
     error_post error
